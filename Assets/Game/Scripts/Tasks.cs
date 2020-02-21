@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class Tasks : MonoBehaviour
 {
-    [Header("Info")]
-    [SerializeField] private int _TasksTotal;
-    [SerializeField] private int _TasksCompleted;
-    [SerializeField] private bool _AllTasksCompleted;
-
     [Header("Tasks")]
     [SerializeField] private List<Task_Collect> _Collect = new List<Task_Collect>();
+
+    [Header("Do if tasks completed")]
+    [SerializeField] private UnityEvent _DoOnCompletion;
+
+    //Private variables
+    private bool _AllTasksComplededCheck;
+    private int _TasksTotal, _TasksCompleted;
+    private bool _AllTasksCompleted;
 
     private void Start()
     {
@@ -54,6 +57,12 @@ public class Tasks : MonoBehaviour
 
         if (_TasksCompleted >= _TasksTotal)
             _AllTasksCompleted = true;
+
+        if(_AllTasksCompleted && !_AllTasksComplededCheck)
+        {
+            _DoOnCompletion.Invoke();
+            _AllTasksComplededCheck = true;
+        }
     }            //Tasks Completed
 
     //GetInfo
