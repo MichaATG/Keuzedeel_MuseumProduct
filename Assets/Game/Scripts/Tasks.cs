@@ -74,6 +74,28 @@ public class Tasks : MonoBehaviour
     {
         return _TasksCompleted;
     }
+    public int Tasks_GetCollectedAmount(string taskname)
+    {
+        for (int i = 0; i < _Collect.Count; i++)
+        {
+            if (_Collect[i]._TaskName == taskname)
+            {
+                return _Collect[i]._CurrentCollected;
+            }
+        }
+        return 0;
+    }
+    public int Tasks_GetTotalAmount(string taskname)
+    {
+        for (int i = 0; i < _Collect.Count; i++)
+        {
+            if (_Collect[i]._TaskName == taskname)
+            {
+                return _Collect[i]._CollectAmount;
+            }
+        }
+        return 0;
+    }
 }
 
 [System.Serializable]
