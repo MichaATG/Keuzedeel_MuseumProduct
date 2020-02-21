@@ -51,6 +51,9 @@ public class Tasks : MonoBehaviour
                 taskscompleted++;
         }
         _TasksCompleted = taskscompleted;
+
+        if (_TasksCompleted >= _TasksTotal)
+            _AllTasksCompleted = true;
     }            //Tasks Completed
 
     //GetInfo
